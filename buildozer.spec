@@ -1,26 +1,26 @@
 [app]
 
 # (str) Title of your application
-title = TOMS
+title = TOMS TEST LAB
 
 # (str) Package name
-package.name = toms
+package.name = imagetest
 
 # (str) Package domain (needed for android packaging)
-package.domain = org.toms.app
+package.domain = org.test
 
 # (str) Source code where the main.py live
 source.dir = .
 
 # (list) Source files to include
-source.include_exts = py,png,jpg,jpeg,kv,ttf,txt,db,xml [cite: 2033]
+# ДОБАВЛЕНО xml для file_paths.xml
+source.include_exts = py,png,jpg,jpeg,kv,ttf,txt,db,xml
 
 # (str) Application versioning
-version = 0.1.0
+version = 0.1.1
 
 # (list) Application requirements
-# ДОБАВЛЕНО: sharedstorage4kivy и gestures4kivy для корректной работы библиотек
-requirements = python3, kivy==2.3.0, kivymd==1.1.1, pillow, plyer, pyjnius, android, sharedstorage4kivy, https://github.com/Android-for-Python/gestures4kivy/archive/main.zip, https://github.com/Android-for-Python/camera4kivy/archive/main.zip [cite: 2033]
+requirements = python3, kivy==2.3.0, kivymd==1.1.1, pillow, plyer, pyjnius, android, sharedstorage4kivy, https://github.com/Android-for-Python/gestures4kivy/archive/main.zip, https://github.com/Android-for-Python/camera4kivy/archive/main.zip
 
 # (str) Supported orientations
 orientation = portrait
@@ -29,22 +29,24 @@ orientation = portrait
 fullscreen = 0
 
 # (list) Permissions
-android.permissions = READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CAMERA, MANAGE_EXTERNAL_STORAGE, READ_MEDIA_IMAGES [cite: 2034]
+android.permissions = READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CAMERA, MANAGE_EXTERNAL_STORAGE, READ_MEDIA_IMAGES
 
 # (int) Target Android API
-android.api = 33 [cite: 2035]
+android.api = 33
 
 # (int) Minimum API
-android.minapi = 21 [cite: 2036]
+android.minapi = 21
 
 # (str) Android NDK version
 android.ndk = 25b
 
 # (bool) If True, then skip trying to update the Android sdk
-android.skip_update = False [cite: 2037]
+# ИСПРАВЛЕНО: используем 0 вместо False для совместимости с Python 3.12
+android.skip_update = 0
 
 # (bool) If True, then automatically accept SDK license
-android.accept_sdk_license = True [cite: 2038]
+# ИСПРАВЛЕНО: используем 1 вместо True
+android.accept_sdk_license = 1
 
 # (str) Android entry point
 android.entrypoint = org.kivy.android.PythonActivity
@@ -53,21 +55,20 @@ android.entrypoint = org.kivy.android.PythonActivity
 android.archs = arm64-v8a
 
 # (bool) enables Android auto backup feature
-android.allow_backup = True
+android.allow_backup = 1
 
-# --- СЕКЦИЯ ИСПРАВЛЕНИЙ ДЛЯ КАМЕРЫ И ФАЙЛОВ ---
+# --- СЕКЦИЯ ДЛЯ РАБОТЫ КАМЕРЫ И ГАЛЕРЕИ ---
 
-# (list) XML to include in the android manifest for FileProvider
-# Это связывает созданный тобой файл res/xml/file_paths.xml с манифестом
+# Связываем файл путей (должен лежать в res/xml/file_paths.xml)
 android.add_xml = res/xml/file_paths.xml
 
-# (str) The name of the FileProvider class
+# Настройка провайдера файлов
 android.meta_data = androidx.core.content.FileProvider=android.support.v4.content.FileProvider
 
-# (list) Gradle dependencies for CameraX (решает проблему ClassNotFoundException из логов)
+# Gradle зависимости для CameraX (РЕШАЕТ КРАШ ПРИ КАСАНИИ)
 android.gradle_dependencies = "androidx.camera:camera-core:1.3.0", "androidx.camera:camera-camera2:1.3.0", "androidx.camera:camera-lifecycle:1.3.0", "androidx.camera:camera-video:1.3.0", "androidx.camera:camera-view:1.3.0", "androidx.camera:camera-extensions:1.3.0"
 
-# ----------------------------------------------
+# ------------------------------------------
 
 [buildozer]
 log_level = 2
