@@ -20,12 +20,12 @@ version = 0.1
 
 # (list) Application requirements
 # Добавлены прямые ссылки на архивы для camera4kivy и gestures4kivy
-requirements = python3, kivy==2.3.1, kivymd==1.1.1, pillow, pyjnius
+requirements = python3, kivy==2.3.1, kivymd==1.1.1, pillow, pyjnius, filetype
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/assets/placeholder.png
+# presplash.filename = %(source.dir)s/assets/placeholder.png
 
 # (str) Icon of the application
-icon.filename = %(source.dir)s/assets/placeholder.png
+# icon.filename = %(source.dir)s/assets/placeholder.png
 
 # (str) Supported orientations
 orientation = portrait
